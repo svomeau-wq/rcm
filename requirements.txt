@@ -1,0 +1,6 @@
+flask>=3.0,<4
+pillow>=10.3
+flask-limiter>=3.8
+gunicorn>=22.0
+requests>=2.32
+python-dotenv>=1.0
