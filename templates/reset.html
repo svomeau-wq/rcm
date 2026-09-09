@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Nouveau mot de passe — AR24{% endblock %}
+{% block body %}
+<main class="auth" data-testid="reset-page">
+  <aside class="auth-panel">
+    <h1 class="auth-title">
+      <span class="mask"><span>Dernière étape</span></span>
+      <span class="mask"><span class="accent">avant la reconnexion.</span></span>
+    </h1>
+    <p class="auth-sub">Choisissez un nouveau mot de passe solide : au moins 8 caractères, unique à AR24.</p>
+  </aside>
+
+  <section class="auth-form-wrap">
+    <div class="auth-card">
+      <h2 class="auth-card-title">Nouveau mot de passe</h2>
+      <p class="auth-card-sub">Ce lien est à usage unique et expire après 1 heure.</p>
+
+      {% if error %}
+      <p class="auth-error" data-testid="reset-error-message" role="alert">{{ error }}</p>
+      {% endif %}
+
+      <form method="post" action="{{ url_for('reinitialiser', token=token) }}" class="auth-form">
+        <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+        <label class="field">
+          <span>Nouveau mot de passe (8 caractères min.)</span>
+          <input type="password" name="password" data-testid="reset-password-input" required autocomplete="new-password" minlength="8" placeholder="••••••••••">
+        </label>
+        <label class="field">
+          <span>Confirmer le mot de passe</span>
+          <input type="password" name="confirm" data-testid="reset-confirm-input" required autocomplete="new-password" minlength="8" placeholder="••••••••••">
+        </label>
+        <button type="submit" class="btn btn-orange btn-block" data-testid="reset-submit-button">Réinitialiser mon mot de passe</button>
+      </form>
+
+      <p class="auth-alt"><a href="{{ url_for('login') }}" data-testid="reset-back-login-link">← Retour à la connexion</a></p>
+    </div>
+  </section>
+</main>
+{% endblock %}

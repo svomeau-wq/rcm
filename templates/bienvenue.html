@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Connexion réussie — AR 24{% endblock %}
+{% block body %}
+<main class="gate" data-testid="welcome-page">
+  <div class="gate-grid"></div>
+  <section class="gate-card">
+    <p class="gate-eyebrow">Accès autorisé</p>
+    <h1 class="gate-title" data-testid="welcome-title">Connexion réussie</h1>
+    <p class="gate-sub">Bonjour {{ name }}, vos identifiants sont corrects. Votre session est sécurisée et chiffrée.</p>
+
+    <a href="{{ url_for('logout') }}" class="btn btn-orange btn-block" data-testid="welcome-logout-button">Se déconnecter</a>
+
+    <div class="gate-trust">
+      <span>Session chiffrée TLS</span>
+      <span class="gate-dot"></span>
+      <span>Site officiel AR 24</span>
+    </div>
+  </section>
+</main>
+{% endblock %}
